@@ -6,8 +6,12 @@ body,html {
     height: 100%
 }
 
+#root * {
+    font-family: Lato,helvetica neue,Helvetica,Arial,sans-serif !important;
+}
+
 body,h1,h2,h3,h4,h5,h6 {
-    font-family: lato,helvetica neue,Helvetica,Arial,sans-serif;
+    font-family: Lato,helvetica neue,Helvetica,Arial,sans-serif;
     font-weight: 700
 }
 
@@ -158,24 +162,3 @@ footer {
 p.copyright {
     margin: 15px 0 0
 }
-
-/*
-     FILE ARCHIVED ON 23:59:14 Dec 21, 2018 AND RETRIEVED FROM THE
-     INTERNET ARCHIVE ON 07:29:19 Mar 15, 2023.
-     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
-
-     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
-     SECTION 108(a)(3)).
-*/
-/*
-playback timings (ms):
-  captures_list: 65.947
-  exclusion.robots: 0.069
-  exclusion.robots.policy: 0.06
-  RedisCDXSource: 0.599
-  esindex: 0.007
-  LoadShardBlock: 41.462 (3)
-  PetaboxLoader3.datanode: 64.563 (5)
-  load_resource: 127.823 (2)
-  PetaboxLoader3.resolve: 85.458 (2)
-*/
