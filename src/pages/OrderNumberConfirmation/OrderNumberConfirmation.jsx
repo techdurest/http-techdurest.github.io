@@ -14,7 +14,7 @@ function OrderNumberConfirmation(props) {
   [1, 2, 3, 4].forEach((i) => {
     const productDescription = state[`Product Description ${i}`];
     if (productDescription) {
-      listOrders.push(`${state['Quantity']} X ${productDescription}`);
+      listOrders.push(`${state['Quantity P1']} X ${productDescription}`);
     }
   });
 
