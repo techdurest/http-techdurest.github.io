@@ -17,26 +17,26 @@ import { Button } from '@mui/material';
 
 function DateOrderConfirmation() {
   const [value, setValue] = useState('');
-  const [deliveryAvailability, setDeliveryAvailability] = useState({});
+  var [deliveryAvailability, setDeliveryAvailability] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { state } = useLocation();
 
   useEffect(() => {
-    getDayAvailabilityForPostcode(state['Postcode']).then(
-      (availabilities) => {
-        console.log(availabilities)
-        setDeliveryAvailability(availabilities);
-      }
-    );
+    // getDayAvailabilityForPostcode(state['Postcode']).then(
+    //   (availabilities) => {
+    //     console.log(state['premium_dates'])
+        setDeliveryAvailability(state['premium_dates']);
+    //   }
+    // );
   }, [state]);
 
   const onSubmitDay = () => {
-    setIsLoading(true);    
+    setIsLoading(true);
     const chosenDay = value.format('DD/MM/YY');
-    updateDayDelivery(state['Unique Ref'], chosenDay, 'N')
+    updateDayDelivery(state['Unique Ref'], chosenDay, 'Y')
       .then(() => {
-        navigate('/order_confirmation', { state: { date: chosenDay , premium: 'N' } });
+        navigate('/order_confirmation', { state: { date: chosenDay , premium: 'Y' } });
       })
       .finally(() => setIsLoading(false));
   };
@@ -48,7 +48,7 @@ function DateOrderConfirmation() {
   return (
     <>
       <Card>
-        <CardHeader title='Confirm Your Standard Delivery Date' />
+        <CardHeader title='Confirm Your Premium Delivery Date' />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <StaticDatePicker
             PaperProps={{
@@ -79,9 +79,9 @@ function DateOrderConfirmation() {
   variant='contained'
   color='primary'
   sx={{ bgcolor: '#2596be', color: 'white' }}
-  onClick={() => navigate('/premium_date_order_confirmation', { state })}
+  onClick={() => navigate('/date_order_confirmation', { state })}
 >
-Can't see an ideal date? Book a Premium Paid Dedicated Delivery
+BACK
 </Button>
           <LoadingButton
             loading={isLoading}

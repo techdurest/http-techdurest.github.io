@@ -1,5 +1,5 @@
 export const getAllOrders = (v) => {
-  const url = `https://script.google.com/macros/s/AKfycbyhR-ORMF-h0qOTm8WyrmxgLCfGrVXJ7y-OLD8JL3oZNFB5ASv4x3CJT_Ckxkv5ajcW/exec?action=getOrderItemDetails&order_id=${v}`;
+  const url = `https://script.google.com/macros/s/AKfycbwg3Zxw0wwjTjgRe0CJq5Xk8wehfmHEBnTcmvKaFiXgq4WBHuDwUk_vqqexULhhkO8aBg/exec?action=getOrderItemDetails&order_id=${v}`;
 
   return fetch(url, { method: 'GET' })
     .then(response => {      
@@ -11,8 +11,7 @@ export const getAllOrders = (v) => {
     return getAllOrders(v.toUpperCase()).then((orders) => {
       global.orderData = orders;
       console.log(global.orderData)
-      console.log(v.toUpperCase())
-    return orders.find((order) => order['UNIQUE DELVIERY REFERENCE'] === v.toUpperCase());
+    return orders.find((order) => order['Unique Ref'] === v.toUpperCase());
   });
 };
 
@@ -24,12 +23,15 @@ export const getDeliveryAvailabilities = () => {
     }
   ).then((response) => {
     // console.log(response)
+    // console.log(response.json())
     return response.json();
   });
 };
 
-export const updateDayDelivery = (deliveryReference, dayDelivery) => {
-  const url = `https://script.google.com/macros/s/AKfycbyhR-ORMF-h0qOTm8WyrmxgLCfGrVXJ7y-OLD8JL3oZNFB5ASv4x3CJT_Ckxkv5ajcW/exec?action=deliveryDateBooking&order_id=${deliveryReference}&date=${dayDelivery}`;
+export const updateDayDelivery = (deliveryReference, dayDelivery, premium) => {
+  console.log(deliveryReference)
+  console.log(dayDelivery)
+  const url = `https://script.google.com/macros/s/AKfycbwg3Zxw0wwjTjgRe0CJq5Xk8wehfmHEBnTcmvKaFiXgq4WBHuDwUk_vqqexULhhkO8aBg/exec?action=deliveryDateBooking&order_id=${deliveryReference}&date=${dayDelivery}&premium=${premium}`;
 
   return fetch(url, { method: 'GET' })
     .then(response => {      
@@ -37,7 +39,7 @@ export const updateDayDelivery = (deliveryReference, dayDelivery) => {
     })
     .then(orderData => {
       global.orderData = orderData;
-      // console.log(orderData)
+      console.log(orderData)
       return orderData;
     });
 };
@@ -49,7 +51,7 @@ export const getDayAvailabilityForPostcode = (postcode) => {
     // availabilities.forEach((row) => {
     //   result[row['Date (DD/MM/YY)']] = row[postcode] === 'TRUE';
     // });
-
+    // console.log(global.orderData[0]['available_delivery_dates'])
     return global.orderData[0]['available_delivery_dates'];
   });
 };
