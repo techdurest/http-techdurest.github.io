@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 function ProvideDeliveryReference(props) {
   const navigate = useNavigate();
   const [errorText, setErrorText] = useState('');
+  const [messageText, setMessageText] = useState('');
   const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,6 +29,7 @@ function ProvideDeliveryReference(props) {
   const handleChange = (event) => {
     setValue(event.target.value);
     setErrorText('');
+    setMessageText('')
   };
 
   const onSubmit = () => {
@@ -42,10 +44,10 @@ function ProvideDeliveryReference(props) {
               const df = sd.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
               const email = 'hello@bedlink.co.uk';
               if(result['PremiumDelivery'] == true){
-                setErrorText(`Amazing news, your Premium Paid Delivery has already been booked in for ${df}. You do not need to do anything else at this stage. If you want this date changed, please email ${email} and the team can update this for you.`);
+                setMessageText(`Amazing news, your Premium Paid Delivery has already been booked in for ${df}. You do not need to do anything else at this stage. If you want this date changed, please email ${email} and the team can update this for you.`);
               }
               else{
-                setErrorText(`Great news, your delivery has already been booked in for ${df}. You do not need to do anything else at this stage. If you want this date changed, please email ${email} and the team can update this for you.`);
+                setMessageText(`Great news, your delivery has already been booked in for ${df}. You do not need to do anything else at this stage. If you want this date changed, please email ${email} and the team can update this for you.`);
               }
             }
             
@@ -74,15 +76,28 @@ function ProvideDeliveryReference(props) {
           Please enter your delivery reference to book your delivery slot:
         </Typography>
         <TextField
-          error={!!errorText}
-          helperText={errorText}
+          // error={!!errorText}
+          // helperText={errorText}
           fullWidth
           variant='outlined'
           color='success'
-          size='small'
+          size='me'
           value={value}
           onChange={(v) => handleChange(v)}
+          // sx={{ fontSize: '1.2rem' }}
         />
+      </CardContent>
+      <CardContent>
+        {messageText && (
+          <Typography sx={{ fontWeight: 'bold', color: '#4caf50' }}>
+            {messageText}
+          </Typography>
+        )}
+        {errorText && (
+          <Typography sx={{ fontWeight: 'bold', color: 'red' }}>
+            {errorText}
+          </Typography>
+        )}
       </CardContent>
       <CardContent style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <LoadingButton

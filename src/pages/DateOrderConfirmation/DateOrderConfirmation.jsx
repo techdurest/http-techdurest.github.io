@@ -13,6 +13,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { getDayAvailabilityForPostcode, updateDayDelivery } from '../../API';
 import { LoadingButton } from '@mui/lab';
 import { Button } from '@mui/material';
+import Box from '@mui/material/Box';
 
 
 function DateOrderConfirmation() {
@@ -74,24 +75,26 @@ function DateOrderConfirmation() {
             }}
           />
         </LocalizationProvider>
-        <CardContent style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Button
-  variant='contained'
-  color='primary'
-  sx={{ bgcolor: '#2596be', color: 'white' }}
-  onClick={() => navigate('/premium_date_order_confirmation', { state })}
->
-Can't see an ideal date? Book a Premium Paid Dedicated Delivery
-</Button>
-          <LoadingButton
-            loading={isLoading}
-            variant='outlined'
-            color='success'
-            onClick={onSubmitDay}
-            disabled={!value}
-          >
-            Confirm Slot
-          </LoadingButton>
+        <CardContent>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}> 
+            <Button
+                variant='contained'
+                color='primary'
+                sx={{ bgcolor: '#2596be', color: 'white' }}
+                onClick={() => navigate('/premium_date_order_confirmation', { state })}
+              >
+              Can't see an ideal date? Book a Premium Paid Dedicated Delivery
+              </Button>
+              <LoadingButton
+                loading={isLoading}
+                variant='outlined'
+                color='success'
+                onClick={onSubmitDay}
+                disabled={!value}
+              >
+                Confirm Slot
+              </LoadingButton>
+            </Box>
         </CardContent>
       </Card>
     </>
