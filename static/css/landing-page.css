@@ -187,3 +187,11 @@ p.copyright {
     margin-bottom: 10px;
   }
 }
+
+.Mui-selected {
+    background-color: violet !important;
+  }
+
+.Mui-selected-blue {
+    background-color: blue !important;
+  }
